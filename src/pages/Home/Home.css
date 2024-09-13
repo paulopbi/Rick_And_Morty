@@ -19,6 +19,7 @@
 .form-filters select {
   padding: 0.625rem 0.938rem;
   border-radius: 5px;
+  outline: none;
   background: transparent;
   color: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.38);
