@@ -1,0 +1,30 @@
+.card-content {
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 3px 4px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.14);
+  background-color: #fff;
+}
+
+.card-content {
+  width: 100%;
+}
+
+.card-content img {
+  border-radius: 4px 4px 0 0;
+}
+
+.card-texts {
+  padding: 1rem;
+}
+
+.card-content h2 {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.card-content span {
+  display: inline-block;
+  margin-block: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+}
