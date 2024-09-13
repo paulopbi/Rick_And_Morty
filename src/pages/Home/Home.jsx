@@ -4,16 +4,31 @@ import useSearchCharacter from "../../hooks/useSearchCharacter";
 
 import "./Home.css";
 const Home = () => {
+  // filters
   const [search, setSearch] = useState("");
-  const { data: searchData } = useSearchCharacter(search);
+  const [species, setSpecies] = useState("");
+  const [gender, setGender] = useState("");
+  const [status, setStatus] = useState("");
+
+  const { data: searchData, error } = useSearchCharacter(
+    search,
+    species,
+    gender,
+    status
+  );
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    setSearch("");
+  };
 
   return (
     <main className="main container">
       <div className="main-logo-picture">
-        <img src="/logo.png" alt="Logo" />
+        <img src="/logo.png" alt="Rick and Morty logo" />
       </div>
 
-      <form className="form-filters">
+      <form className="form-filters" onSubmit={handleSubmit}>
         <input
           type="search"
           placeholder="Filter by name"
@@ -23,29 +38,29 @@ const Home = () => {
           }}
         />
 
-        <select>
-          <option value="species">Species</option>
+        <select onChange={({ target }) => setSpecies(target.value)}>
+          <option value="">Espécies</option>
           <option value="animal">Animal</option>
           <option value="alien">Alien</option>
           <option value="disease">Doença</option>
           <option value="unknown">Desconhecido</option>
           <option value="human">Humano</option>
           <option value="humanoid">Humanoide</option>
-          <option value="mythological">Mitologico</option>
+          <option value="mythological">Mitológico</option>
           <option value="poopybutthole">Poopybutthole</option>
-          <option value="robot">Robo</option>
+          <option value="robot">Robô</option>
         </select>
 
-        <select>
-          <option value="gender">Gender</option>
+        <select onChange={({ target }) => setGender(target.value)}>
+          <option value="">Gênero</option>
           <option value="female">Feminino</option>
           <option value="male">Masculino</option>
           <option value="genderless">Sem Genero</option>
           <option value="unknown">Desconhecido</option>
         </select>
 
-        <select>
-          <option value="status">Status</option>
+        <select onChange={({ target }) => setStatus(target.value)}>
+          <option value="">Estado</option>
           <option value="alive">Vivo</option>
           <option value="dead">Morto</option>
           <option value="unknown">Desconhecido</option>
@@ -53,7 +68,7 @@ const Home = () => {
       </form>
 
       <section className="card-area">
-        <Card searchData={searchData} />
+        <Card searchData={searchData} error={error} />
       </section>
 
       <div className="btn-area">
