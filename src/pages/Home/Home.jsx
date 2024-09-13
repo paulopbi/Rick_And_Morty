@@ -9,13 +9,18 @@ const Home = () => {
   const [species, setSpecies] = useState("");
   const [gender, setGender] = useState("");
   const [status, setStatus] = useState("");
-
+  const [pages, setPages] = useState(1);
   const { data: searchData, error } = useSearchCharacter(
     search,
     species,
     gender,
-    status
+    status,
+    pages
   );
+
+  const handlePages = () => {
+    setPages((prevValue) => (prevValue += 1));
+  };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -72,7 +77,9 @@ const Home = () => {
       </section>
 
       <div className="btn-area">
-        <button className="loading__btn">Carregar</button>
+        <button className="loading__btn" onClick={() => handlePages()}>
+          Atualizar
+        </button>
       </div>
     </main>
   );

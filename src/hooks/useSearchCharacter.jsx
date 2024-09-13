@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-const useSearchCharacter = (name, species, gender, status) => {
+const useSearchCharacter = (name, species, gender, status, page) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   useEffect(() => {
     const searchCharacters = async () => {
       try {
         const searhData = await fetch(
-          `https://rickandmortyapi.com/api/character/?name=${name}&species=${species}&gender=${gender}&status=${status}`
+          `https://rickandmortyapi.com/api/character/?name=${name}&species=${species}&gender=${gender}&status=${status}&page=${page}`
         );
         const json = await searhData.json();
         setData(json.results);
@@ -18,7 +18,7 @@ const useSearchCharacter = (name, species, gender, status) => {
     };
 
     searchCharacters();
-  }, [name, species, gender, status]);
+  }, [name, species, gender, status, page]);
 
   return { data, error };
 };
