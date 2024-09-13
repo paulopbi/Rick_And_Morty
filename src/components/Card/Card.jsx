@@ -1,17 +1,18 @@
+import PropTypes from "prop-types";
+//css
 import "./Card.css";
-import Proptypes from "prop-types";
 
-const Card = ({ searchData, error }) => {
+const Card = ({ apiData, errorStatus }) => {
   return (
     <>
-      {error && (
+      {errorStatus && (
         <p className="error">
           Ops houve algum erro, por favor, tente novamente!
         </p>
       )}
 
-      {searchData &&
-        searchData.map((character) => (
+      {apiData &&
+        apiData.map((character) => (
           <div className="card" key={character.id}>
             <div className="card-content">
               <div className="card-img">
@@ -29,9 +30,9 @@ const Card = ({ searchData, error }) => {
   );
 };
 
-export default Card;
-
 Card.propTypes = {
-  searchData: Proptypes.array,
-  error: Proptypes.func,
+  apiData: PropTypes.array,
+  errorStatus: PropTypes.bool,
 };
+
+export default Card;

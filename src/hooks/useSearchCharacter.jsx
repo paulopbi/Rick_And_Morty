@@ -1,26 +1,29 @@
 import { useEffect, useState } from "react";
 
 const useSearchCharacter = (name, species, gender, status, page) => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(false);
+  //json response data
+  const [apiData, setApiData] = useState([]);
+  //handle error state
+  const [errorStatus, setErrorStatus] = useState(false);
+
   useEffect(() => {
-    const searchCharacters = async () => {
+    const getData = async () => {
       try {
-        const searhData = await fetch(
+        const apiRequest = await fetch(
           `https://rickandmortyapi.com/api/character/?name=${name}&species=${species}&gender=${gender}&status=${status}&page=${page}`
         );
-        const json = await searhData.json();
-        setData(json.results);
-      } catch (error) {
-        setError(true);
-        console.error(`Error status: ${error}`);
+        const response = await apiRequest.json();
+        setApiData(response.results);
+      } catch (e) {
+        setErrorStatus(true);
+        console.error(`Error status: ${e}`);
       }
     };
-
-    searchCharacters();
+    getData();
   }, [name, species, gender, status, page]);
 
-  return { data, error };
+  //return a object
+  return { apiData, errorStatus };
 };
 
 export default useSearchCharacter;
