@@ -88,7 +88,7 @@ const Home = () => {
 
       <div className="btn-area">
         <button className="loading__btn" onClick={() => handlePages()}>
-          Atualizar
+          Ver Mais
         </button>
       </div>
     </main>
