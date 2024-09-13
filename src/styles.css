@@ -14,11 +14,12 @@ li {
 a {
   text-decoration: none;
   transition: color 0.4s;
-  color: #000;
+  color: #505050;
 }
 
 a:hover {
   color: #666666;
+  text-decoration: underline;
 }
 
 img {
